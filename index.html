@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Body Guard</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="head">
+        <img id="head-img" src="assets/img/bodyguard_logo_modif.jpg">
+        <h1>BODYGUARD</h1>
+        <img id="head-user-logo" src="assets/img/user-logo.png">
+    </div>
+    
+    <form action="submit.php" method="post">
+        <div>
+            <label for="file">Fichier/dossier à sauvegarder :</label>
+        </div>
+        <div>
+            <input type="file" id="file" name="file"><br><br>
+        </div>
+        <div>
+            <label for="frequency">Fréquence de sauvegarde :</label>
+        </div>
+        <div>
+            <div>
+                <input type="radio" id="no" name="frequency" value="no">
+                <label for="no">No</label>
+            </div>
+            <div>
+                <input type="radio" id="daily" name="frequency" value="daily">
+                <label for="daily">Daily</label>
+            </div>
+            <div>
+                <input type="radio" id="weekly" name="frequency" value="weekly">
+                <label for="weekly">Weekly</label>
+            </div>
+            <div>
+                <input type="radio" id="monthly" name="frequency" value="monthly">
+                <label for="monthly">Monthly</label><br><br>
+            </div>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+<script>
+    // Récupération des éléments de la page
+const restoreInput = document.getElementById("restore");
+const frequencyCheckboxes = document.querySelectorAll('input[name="frequency"]');
+const saveButton = document.getElementById("save-button");
+const restoreButton = document.getElementById("restore-button");
+
+// Fonction pour cacher les options de fréquence
+function hideFrequencyOptions() {
+  frequencyCheckboxes.forEach(function (checkbox) {
+    checkbox.style.display = "none";
+  });
+}
+
+// Fonction pour afficher les options de fréquence
+function showFrequencyOptions() {
+  frequencyCheckboxes.forEach(function (checkbox) {
+    checkbox.style.display = "";
+  });
+}
+
+// Ajout d'un écouteur d'événement sur le bouton "Restore"
+restoreButton.addEventListener("click", function () {
+  // Récupération de la valeur de l'input "Restore"
+  const restoreValue = restoreInput.value.trim();
+  
+  if (restoreValue === "") {
+    // Si la valeur de l'input "Restore" est vide, on affiche les options de fréquence
+    showFrequencyOptions();
+  } else {
+    // Sinon, on cache les options de fréquence
+    hideFrequencyOptions();
+  }
+});
+
+// Ajout d'un écouteur d'événement sur le bouton "Save"
+saveButton.addEventListener("click", function () {
+  // On affiche toujours les options de fréquence
+  showFrequencyOptions();
+});
+
+</script>
+</html>
